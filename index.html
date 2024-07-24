@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            color: #ff6347;
+        }
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .cat-image {
+            width: 100px;
+            height: auto;
+            animation: bounce 2s infinite;
+        }
+        .gift-box {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            background-color: #ff6347;
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+        }
+        .gift-box img {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+        .gift-box.open img {
+            display: block;
+        }
+        .gift-box::before {
+            content: '🎁';
+            font-size: 100px;
+            color: #fff;
+            line-height: 200px;
+        }
+        .qa-section {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .qa-section input, .qa-section button {
+            padding: 10px;
+            margin: 5px;
+        }
+        .qa-section input {
+            width: 80%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .qa-section button {
+            background-color: #ff6347;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .qa-section button:hover {
+            background-color: #ff4500;
+        }
+        .response {
+            margin-top: 10px;
+            font-style: italic;
+            color: #555;
+        }
+        .responses-list {
+            max-height: 300px;
+            overflow-y: auto;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+        .rating-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .rating-section button {
+            background-color: #ff6347;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            padding: 10px 20px;
+            margin: 5px;
+        }
+        .rating-section button:hover {
+            background-color: #ff4500;
+        }
+        .author-info {
+            margin-top: 20px;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Selamat Ulang Tahun!</h1>
+        <p>Selamat merayakan hari istimewa Anda! Semoga tahun ini penuh kebahagiaan dan kesuksesan.</p>
+        <img src="https://media.giphy.com/media/3o6Zt8zVh6I5lS10Wk/giphy.gif" alt="Kucing bergerak" class="cat-image">
+        
+        <!-- Kado yang bisa dibuka -->
+        <div class="gift-box" onclick="openGift()">
+            <img src="https://media.giphy.com/media/3o6Zt7Z3MG6G7P8a2I/giphy.gif" alt="Kucing lucu">
+        </div>
+        
+        <div class="qa-section">
+            <h2>Kata-Kata Buat Aku Apa</h2>
+            <label for="question">Tanyakan sesuatu:</label><br>
+            <input type="text" id="question" placeholder="Masukkan pertanyaan Anda">
+            <button onclick="submitQuestion()">Kirim</button>
+            <div id="responses-list" class="responses-list"></div>
+        </div>
+
+        <!-- Rating Section and Author Info -->
+        <div class="rating-section">
+            <h2>Rating:</h2>
+            <button onclick="rate(5)">🌟🌟🌟🌟🌟</button>
+            <button onclick="rate(4)">🌟🌟🌟🌟⭐</button>
+            <button onclick="rate(3)">🌟🌟🌟⭐️⭐️</button>
+            <button onclick="rate(2)">🌟🌟⭐️⭐️⭐️</button>
+            <button onclick="rate(1)">🌟⭐️⭐️⭐️⭐️</button>
+        </div>
+
+        <div class="author-info">
+            <p>Author: Rizky yang ada di kontak lu, alias Rizky Anwari🗿🗿</p>
+        </div>
+    </div>
+
+    <script>
+        function openGift() {
+            var giftBox = document.querySelector('.gift-box');
+            giftBox.classList.toggle('open');
+        }
+
+        function submitQuestion() {
+            var question = document.getElementById('question').value;
+            var responsesList = document.getElementById('responses-list');
+            
+            if (question.trim() === '') {
+                var emptyResponse = document.createElement('p');
+                emptyResponse.textContent = 'Ayo, jangan malu-malu! Ketik pertanyaanmu di sini.';
+                emptyResponse.className = 'response';
+                responsesList.appendChild(emptyResponse);
+            } else {
+                // Simulasi jawaban dari "AI" dengan gaya gaul
+                var answer = 'Yo, keren banget kamu nanya: "' + question + '". Jawaban kece dari AI: Ini jawaban yang super keren buatmu! 🤖🎉';
+                var answerElement = document.createElement('p');
+                answerElement.textContent = answer;
+                answerElement.className = 'response';
+                responsesList.appendChild(answerElement);
+            }
+            
+            // Clear input field
+            document.getElementById('question').value = '';
+            
+            // Auto-scroll ke bawah
+            responsesList.scrollTop = responsesList.scrollHeight;
+        }
+
+        function rate(stars) {
+            alert('Terima kasih atas rating ' + stars + ' bintang! 🌟');
+        }
+    </script>
+</body>
+</html>
